@@ -19,10 +19,9 @@ class Texterra_Minify extends CModule
     var $errors;
 
     function __construct()
-    {
-        //$arModuleVersion = array();
+    { 
         $this->MODULE_VERSION = "1.0.0";
-        $this->MODULE_VERSION_DATE = "15.02.2022";
+        $this->MODULE_VERSION_DATE = "11.03.2022";
         $this->MODULE_NAME = "TexTerra Minify HTML";
         $this->MODULE_DESCRIPTION = "";
         $this->PARTNER_NAME = "TexTerra.ru";
@@ -56,47 +55,25 @@ class Texterra_Minify extends CModule
     }
 
     function InstallEvents()
-    {
-        // EventManager::getInstance()->registerEventHandler(
-        //     "main",
-        //     "OnEndBufferContent",
-        //     $this->MODULE_ID,
-        //     "Intervolga\\Test\\EventHandlers",
-        //     "onProlog"
-        // ); 
-
-        /**                      ($FROM_MODULE_ID, $MESSAGE_ID, $TO_MODULE_ID, $TO_CLASS="", $TO_METHOD="", $SORT=100, $TO_PATH="", $TO_METHOD_ARG = array()) */
+    { 
         RegisterModuleDependences("main", "OnEndBufferContent", "texterra.minify", MinifyService::class, "handle"); 
         return true;
     }
 
     function UnInstallEvents()
-    {
-        // EventManager::getInstance()->unRegisterEventHandler(
-        //     "main",
-        //     "OnEndBufferContent",
-        //     $this->MODULE_ID,
-        //     MinifyService::class,
-        //     'handle'
-        // );  
+    {  
         UnRegisterModuleDependences("main", "OnEndBufferContent", "texterra.minify", MinifyService::class, "handle"); 
 
         return true;
     }
 
     function InstallFiles()
-    {
-        $siteId = \CSite::GetDefSite();
-
-        // CopyDirFiles(__DIR__ . '/admin/texterra.minify.php', $_SERVER['DOCUMENT_ROOT'] . '/bitrix/admin/texterra.minify.php', true, true);
-
+    { 
         return true;
     }
 
     function UnInstallFiles()
-    {
-        // DeleteDirFilesEx($_SERVER['DOCUMENT_ROOT'] . "/bitrix/admin/texterra.minify.php");
-
+    { 
         return true;
     }
 }

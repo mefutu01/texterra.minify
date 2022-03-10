@@ -25,7 +25,7 @@ class MinifyServiceTest extends BaseTestCase {
 
 
         return [
-            "Title Spaces"=>["<title> Document             </title>","<title>Document</title>"],
+            "Title Spaces"=>["<title> Document Asd            </title>","<title>Document Asd</title>"],
             "Remove comments"=>["<!--  asdasd <script></script> </script>--> asd","asd"],
             "Html, JS, Css " =>["<!DOCTYPE html>
             <html lang=\"en\">

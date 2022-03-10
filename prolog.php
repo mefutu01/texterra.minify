@@ -1,6 +1,3 @@
 <?
 CModule::IncludeModule("texterra.minify");
-IncludeModuleLangFile(__FILE__);
-
-
-?>
+IncludeModuleLangFile(__FILE__); 
