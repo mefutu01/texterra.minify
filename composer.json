@@ -1,0 +1,24 @@
+{
+    "name": "texterra/rest",
+    "autoload": {
+        "psr-4": {
+            "Texterra\\Minify\\": [
+                "lib/",
+                "lib"
+            ],
+            "PHPTDD\\": "tests/unit"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vycheslav",
+            "email": "ershov@texterra.ru"
+        }
+    ],
+    "require": {
+        "composer/composer": "^2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
