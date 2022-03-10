@@ -21,58 +21,65 @@ class MinifyServiceTest extends BaseTestCase {
 
     }
 
+    public function minifyServiceHandlerDataProvider(){
+
+
+        return [
+            "Title Spaces"=>["<title> Document             </title>","<title>Document</title>"],
+            "Remove comments"=>["<!--  asdasd <script></script> </script>--> asd","asd"],
+            "Html, JS, Css " =>["<!DOCTYPE html>
+            <html lang=\"en\">
+            <head>
+                <meta charset=\"UTF-8\">
+                <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+                <title>Document</title>
+            
+                <style>
+                    body { 
+                        background-color:  '#00f';
+            
+                    }
+                </style>
+            
+            
+            </head>
+            <body>
+                
+                <style>
+                    body { 
+                                                                        background-color:  '#00f';
+            
+                    }
+                </style>
+                <script>
+    
+    
+    
+    
+    
+    
+    
+                    document.addEventListener('DOMContentLoaded', ()=>{
+                        alert('asd   asd');
+                    })
+            
+                </script>
+            
+            </body>
+            </html>","<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title><style>body{background-color:'#00f'}</style></head><body><style>body{background-color:'#00f'}</style><script>document.addEventListener('DOMContentLoaded',()=>{alert('asd   asd')})</script></body></html>" ],
+
+        ];
+    }
+
     /**
+     * @dataProvider minifyServiceHandlerDataProvider
      * @covers Texterra\Minify\MinifyService::handler
      **/
-    public function testMinifyServiceHandler() {
-        
-        //arrange 
-        $html  = "<!DOCTYPE html>
-        <html lang=\"en\">
-        <head>
-            <meta charset=\"UTF-8\">
-            <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
-            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-            <title>Document</title>
-        
-            <style>
-                body { 
-                    background-color:  '#00f';
-        
-                }
-            </style>
-        
-        
-        </head>
-        <body>
-            
-            <style>
-                body { 
-                                                                    background-color:  '#00f';
-        
-                }
-            </style>
-            <script>
-
-
-
-
-
-
-
-                document.addEventListener('DOMContentLoaded', ()=>{
-                    alert('asd   asd');
-                })
-        
-            </script>
-        
-        </body>
-        </html>";
-
+    public function testMinifyServiceHandler($html, $minified) {
+         
         //act 
-        MinifyService::handler($html);
-        
-        $minified = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title><style>body{background-color:'#00f'}</style></head><body><style>body{background-color:'#00f'}</style><script>document.addEventListener('DOMContentLoaded',()=>{alert('asd   asd')})</script></body></html>";
+        MinifyService::handle($html);
          
 
         $this->assertSame($minified,$html);

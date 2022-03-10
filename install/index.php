@@ -64,14 +64,9 @@ class Texterra_Minify extends CModule
         //     "Intervolga\\Test\\EventHandlers",
         //     "onProlog"
         // ); 
-        EventManager::getInstance()->registerEventHandler(
-            "main",
-            "OnEndBufferContent",
-            $this->MODULE_ID,
-            MinifyService::class,
-            'handle'
-        ); 
 
+        /**                      ($FROM_MODULE_ID, $MESSAGE_ID, $TO_MODULE_ID, $TO_CLASS="", $TO_METHOD="", $SORT=100, $TO_PATH="", $TO_METHOD_ARG = array()) */
+        RegisterModuleDependences("main", "OnEndBufferContent", "texterra.minify", MinifyService::class, "handle"); 
         return true;
     }
 
@@ -83,15 +78,8 @@ class Texterra_Minify extends CModule
         //     $this->MODULE_ID,
         //     MinifyService::class,
         //     'handle'
-        // );
-        EventManager::getInstance()->unRegisterEventHandler(
-            "main",
-            "OnEndBufferContent",
-            $this->MODULE_ID,
-            MinifyService::class,
-            'handle'
-        );
-
+        // );  
+        UnRegisterModuleDependences("main", "OnEndBufferContent", "texterra.minify", MinifyService::class, "handle"); 
 
         return true;
     }

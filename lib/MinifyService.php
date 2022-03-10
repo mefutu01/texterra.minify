@@ -7,9 +7,10 @@ class MinifyService
     /**
      * @testFunction testMinifyServiceHandler
      */
-    public static function handler(&$buffer)
-    {
+    public static function handle(&$buffer)
+    { 
         $buffer = self::minify_html($buffer); 
+        return $buffer;
     }
 
 
